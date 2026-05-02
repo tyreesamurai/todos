@@ -3,25 +3,7 @@
 import { eq, ilike } from "drizzle-orm";
 import { db } from "@/db/index";
 import * as schema from "@/db/schema";
-import { AppError } from "@/lib/error";
-import type { Album, Book, Event, Movie, Place, Show } from "@/lib/types";
-
-export async function getAlbums() {
-  const albums = await db.select().from(schema.albumTable);
-
-  if (!albums) {
-    return {
-      ok: false,
-      error: new AppError({
-        code: "NOT_FOUND",
-        status: 500,
-        message: "no albums found",
-      }),
-    };
-  }
-
-  return { ok: true, data: albums };
-}
+import type { Album, Book, Event, Movie, Place, Show, Todo } from "@/lib/types";
 
 export const api = {
   albums: {
@@ -44,6 +26,27 @@ export const api = {
         .returning(),
   },
   books: {
+    todos: {
+      get: async (title: string | undefined = undefined) => {
+        if (title) {
+          return await db
+            .select()
+            .from(schema.bookTable)
+            .innerJoin(
+              schema.bookTodoTable,
+              eq(schema.bookTable.id, schema.bookTodoTable.bookId),
+            )
+            .where(ilike(schema.bookTable.title, title));
+        }
+        return await db
+          .select()
+          .from(schema.bookTable)
+          .innerJoin(
+            schema.bookTodoTable,
+            eq(schema.bookTable.id, schema.bookTodoTable.bookId),
+          );
+      },
+    },
     get: async (title: string | undefined = undefined) => {
       if (title) {
         return await db
@@ -138,4 +141,23 @@ export const api = {
         .where(eq(schema.showTable.id, id))
         .returning(),
   },
+  todos: {
+    get: async (title: string | undefined = undefined) => {
+      if (title) {
+        return await db
+          .select()
+          .from(schema.todosTable)
+          .where(ilike(schema.todosTable.title, title));
+      }
+      return await db.select().from(schema.todosTable);
+    },
+  },
+  post: async (todo: Todo) =>
+    await db.insert(schema.todosTable).values(todo).returning(),
+  put: async () => {},
+  delete: async (id: string) =>
+    await db
+      .delete(schema.todosTable)
+      .where(eq(schema.todosTable.id, id))
+      .returning(),
 };

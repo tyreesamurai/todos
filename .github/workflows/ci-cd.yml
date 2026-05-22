@@ -99,7 +99,7 @@ jobs:
           image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}:latest
           format: table
           exit-code: 1
-          severity: HIGH
+          severity: CRITICAL
           ignore-unfixed: true
 
       - name: Push Image

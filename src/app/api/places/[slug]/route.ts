@@ -1,7 +1,7 @@
 import { api } from "@/lib/api";
 import { logger } from "@/lib/logger";
 
-export default async function GET(
+export async function GET(
   _req: Request,
   { params }: { params: Promise<{ slug: string }> },
 ) {

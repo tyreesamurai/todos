@@ -2,7 +2,6 @@ import {
   boolean,
   date,
   integer,
-  interval,
   pgEnum,
   pgTable,
   primaryKey,

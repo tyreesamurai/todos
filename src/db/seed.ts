@@ -1,17 +1,17 @@
 import { db } from "@/db/index";
 import {
-  todosTable,
-  movieTable,
-  showTable,
   albumTable,
-  eventTable,
-  placesTable,
-  bookTable,
-  movieTodoTable,
-  showTodoTable,
   albumTodoTable,
-  eventTodoTable,
+  bookTable,
   bookTodoTable,
+  eventTable,
+  eventTodoTable,
+  movieTable,
+  movieTodoTable,
+  placesTable,
+  showTable,
+  showTodoTable,
+  todosTable,
 } from "@/db/schema";
 
 async function main() {
@@ -193,7 +193,8 @@ async function main() {
       },
       {
         title: "GNX",
-        description: "Kendrick Lamar's surprise album released in November 2024.",
+        description:
+          "Kendrick Lamar's surprise album released in November 2024.",
         artist: "Kendrick Lamar",
         genre: "Hip-Hop",
       },
@@ -264,27 +265,32 @@ async function main() {
     .values([
       {
         name: "The Louvre",
-        description: "The world's largest art museum and a historic monument in Paris.",
+        description:
+          "The world's largest art museum and a historic monument in Paris.",
         location: "Rue de Rivoli, 75001 Paris, France",
       },
       {
         name: "Yellowstone National Park",
-        description: "America's first national park, famous for geysers and wildlife.",
+        description:
+          "America's first national park, famous for geysers and wildlife.",
         location: "Wyoming, Montana, and Idaho, USA",
       },
       {
         name: "Tokyo, Japan",
-        description: "Japan's capital city blending ultramodern and traditional culture.",
+        description:
+          "Japan's capital city blending ultramodern and traditional culture.",
         location: "Honshu Island, Japan",
       },
       {
         name: "Machu Picchu",
-        description: "15th-century Inca citadel set high in the Andes Mountains of Peru.",
+        description:
+          "15th-century Inca citadel set high in the Andes Mountains of Peru.",
         location: "Cusco Region, Peru",
       },
       {
         name: "Amalfi Coast",
-        description: "Stunning stretch of coastline on the southern edge of Italy's Sorrentine Peninsula.",
+        description:
+          "Stunning stretch of coastline on the southern edge of Italy's Sorrentine Peninsula.",
         location: "Province of Salerno, Campania, Italy",
       },
     ])

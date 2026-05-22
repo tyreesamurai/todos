@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  allowedDevOrigins: ["dev.juntos.casa"],
+  allowedDevOrigins: ["dev.juntos.casa", "server"],
 };
 
 export default nextConfig;
